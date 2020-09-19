@@ -23,11 +23,11 @@ I tried to make the script as efficient as possible, so that you would get the r
 Feel free to send your pull requests and contributions xd
   
 
-#Requirement
+# Requirement
 
 **Just a linux terminal with active internet connection with nmap install**
-```bash 
-./nmap.sh
+``` 
+bash nmap.sh
 ```
 **if dont work please use**
 `dos2unix nmap.sh`
