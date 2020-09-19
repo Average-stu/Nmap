@@ -1,4 +1,6 @@
 #!/bin/bash
+#if you are coping its alright :)
+#average-stu
 if [[ "$(id -u)" -ne 0 ]]; then
    printf ".:: Please, run this program as root!\n"
    exit 1
