@@ -24,6 +24,7 @@ Feel free to send your pull requests and contributions xd
   
 
 #Requirement
+
 **Just a linux terminal with active internet connection with nmap install**
 ```bash 
 ./nmap.sh
