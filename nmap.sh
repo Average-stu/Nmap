@@ -71,132 +71,135 @@ else
 target="$1"
 fi
 
+
 if [[ $scan == '1' ]]
    then
-	nmap -v -T4 -A -v $target
+	nmap -v -T4 -A -v $target | tee $target.txt
 
 elif [[ $scan == '2' ]]
     then
-	nmap -v -sS -sU -T4 -A -v $target
+	nmap -v -sS -sU -T4 -A -v $target | tee $target.txt
 
 elif [[ $scan == '3' ]]
     then
-	nmap -v -p 1-65535 -T4 -A -v $target
+	nmap -v -p 1-65535 -T4 -A -v $target | tee $target.txt
 
 elif [[ $scan == '4' ]]
     then
-	nmap -v -T4 -A -v -Pn $target
+	nmap -v -T4 -A -v -Pn $target | tee $target.txt
 
 elif [[ $scan == '5' ]]
     then
-	nmap -v -sn $target
+	nmap -v -sn $target | tee $target.txt
 
 elif [[ $scan == '6' ]]
     then
-	nmap -v -T4 -F $target
+	nmap -v -T4 -F $target | tee $target.txt
 
 elif [[ $scan == '7' ]]
     then
-	nmap -v -v -sV -T4 -O -F --version-light $target
+	nmap -v -v -sV -T4 -O -F --version-light $target | tee $target.txt
 
 elif [[ $scan == '8' ]]
     then
-	nmap -v -sn --traceroute $target
+	nmap -v -sn --traceroute $target | tee $target.txt
 
 elif [[ $scan == '9' ]]
     then
-	nmap -v $target
+	nmap -v $target | tee $target.txt
 
 elif [[ $scan == '10' ]]
     then
-	nmap -v -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery and safe)" $target
+	nmap -v -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery and safe)" $target >$target.txt
 
 elif [[ $scan == '11' ]]
     then
-	nmap -v -f
+	nmap -v -f | tee $target.txt
 
 elif [[ $scan == '12' ]]
     then
 default_mtu="24"
     read -e -p "MTU Size (Default 24):" mtu
 mtu="${mtu:-${default_mtu}}"
-	nmap -v --mtu $mtu $target
+	nmap -v --mtu $mtu $target | tee $target.txt
 
 elif [[ $scan == '13' ]]
     then
 default_mtu="24"
     read -e -p "MTU Size (Default 24):" mtu
 mtu="${mtu:-${default_mtu}}"
-	nmap -v -f --mtu $mtu $target
+	nmap -v -f --mtu $mtu $target | tee $target.txt
 
 elif [[ $scan == '14' ]]
     then
-	nmap -v -D RND:10 $target
+	nmap -v -D RND:10 $target | tee $target.txt
 
 elif [[ $scan == '15' ]]
     then
-	nmap -v --spoof-mac Cisco $target
+	nmap -v --spoof-mac Cisco $target | tee $target.txt
 
 elif [[ $scan == '16' ]]
     then
-	nmap -v --script "not intrusive" $target
-
+	nmap -v --script "not intrusive" $target | tee $target.txt
+ 
 elif [[ $scan == '17' ]]
     then
-	nmap -v --script "default" $target
+	nmap -v --script "default" $target | tee $target.txt
 
 elif [[ $scan == '18' ]]
     then
-	nmap -v --script "default or safe" $target
+	nmap -v --script "default or safe" $target | tee $target.txt
 
 elif [[ $scan == '19' ]]
     then
-	nmap -v --script "default and safe" $target
+	nmap -v --script "default and safe" $target | tee $target.txt
 
 elif [[ $scan == '20' ]]
     then
-	nmap -v --script "all" $target
+	nmap -v --script "all" $target | tee $target.txt
 
 elif [[ $scan == '21' ]]
     then
-	nmap -v -sV -T4 -Pn -oG ServiceDetect  $target
+	nmap -v -sV -T4 -Pn -oG ServiceDetect  $target | tee $target.txt
 
 elif [[ $scan == '22' ]]
     then
-	nmap -v -O -T4 -Pn -oG OSDetect  $target
+	nmap -v -O -T4 -Pn -oG OSDetect  $target | tee $target.txt
 
 elif [[ $scan == '23' ]]
     then
-	nmap -v -O -sV -T4 -Pn -p U:53,111,137,T:21-25,80,139,8080 -oG OS_Service_detect  $target
+	nmap -v -O -sV -T4 -Pn -p U:53,111,137,T:21-25,80,139,8080 -oG OS_Service_detect  $target | tee $target.txt
 
 
 elif [[ $scan == '24' ]]
     then
-	nmap -v -sS -sV -T5 -F -A -O $target
+	nmap -v -sS -sV -T5 -F -A -O $target | tee $target.txt
 
 elif [[ $scan == '25' ]]
     then
-	nmap -v -sS -T4 -Pn -p 0-65535 -oN FullTCP  $target
+	nmap -v -sS -T4 -Pn -p 0-65535 -oN FullTCP  $target | tee $target.txt
 
 elif [[ $scan == '26' ]]
     then
-	nmap -v -sU -T4 -Pn -p 0-65535 -oN FullUDP  $target
+	nmap -v -sU -T4 -Pn -p 0-65535 -oN FullUDP  $target | tee $target.txt
 
 elif [[ $scan == '27' ]]
     then
-	nmap -v -sS -T4 -Pn -oG TopTCP  $target
+	nmap -v -sS -T4 -Pn -oG TopTCP  $target | tee $target.txt
 
 elif [[ $scan == '28' ]]
     then
-	nmap -v -sS -T4 -Pn -oG TopUDP  $target
+	nmap -v -sS -T4 -Pn -oG TopUDP  $target | tee $target.txt
 
 elif [[ $scan == '29' ]]
     then
 
-	nmap -v -T5 $target
+	nmap -v -T5 $target | tee $target.txt
 
 
 
 else
     echo "incorrect number"
 fi
+
+
